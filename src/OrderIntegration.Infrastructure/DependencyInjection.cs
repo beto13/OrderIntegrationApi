@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OrderIntegration.Application.Common.Interfaces;
 using OrderIntegration.Infrastructure.Persistence;
 
 namespace OrderIntegration.Infrastructure;
@@ -16,6 +17,9 @@ public static class DependencyInjection
             options.UseSqlServer(
                 configuration.GetConnectionString("DefaultConnection"));
         });
+
+        services.AddScoped<IAppDbContext>(provider =>
+            provider.GetRequiredService<AppDbContext>());
 
         return services;
     }

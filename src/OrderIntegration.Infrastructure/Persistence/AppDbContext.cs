@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using OrderIntegration.Application.Common.Interfaces;
 using OrderIntegration.Domain.Entities;
 
 namespace OrderIntegration.Infrastructure.Persistence;
 
-public class AppDbContext : DbContext
+public class AppDbContext : DbContext, IAppDbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)

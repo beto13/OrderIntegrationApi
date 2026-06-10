@@ -1,19 +1,24 @@
+using OrderIntegration.Api.Middlewares;
+using OrderIntegration.Application;
 using OrderIntegration.Infrastructure;
-
 var builder = WebApplication.CreateBuilder(args);
+
 
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 // builder.Services.AddSwaggerGen();
 
+builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
-    // object value = app.UseSwagger();
+    // app.UseSwagger();
     // app.UseSwaggerUI();
 }
 
