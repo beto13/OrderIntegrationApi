@@ -1,0 +1,9 @@
+namespace OrderIntegration.Domain.Enums;
+
+public enum IntegrationEventStatus
+{
+    Pending = 1,
+    Processing = 2,
+    Completed = 3,
+    Failed = 4
+}
