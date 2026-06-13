@@ -26,6 +26,7 @@ Content-Type: application/json
 
 
 ### Create order - validation error
+
 POST {{baseUrl}}/api/v1/orders
 Content-Type: application/json
 
@@ -40,9 +41,9 @@ Content-Type: application/json
 
 
 ### Create order - duplicated externalOrderId
+
 POST {{baseUrl}}/api/v1/orders
 Content-Type: application/json
-
 {
   "externalOrderId": "EXT-10001",
   "customerName": "Juan Pérez",
@@ -57,3 +58,7 @@ Content-Type: application/json
     }
   ]
 }
+
+### GetById
+GET {{baseUrl}}/api/v1/orders/19569563-5E86-4B50-A0BD-0DB85881F5B4
+Content-Type: application/json
