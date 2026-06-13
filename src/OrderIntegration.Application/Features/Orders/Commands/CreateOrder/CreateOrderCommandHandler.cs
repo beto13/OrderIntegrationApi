@@ -7,8 +7,7 @@ using OrderIntegration.Domain.Entities;
 
 namespace OrderIntegration.Application.Features.Orders.Commands.CreateOrder;
 
-public class CreateOrderCommandHandler
-    : IRequestHandler<CreateOrderCommand, Result<OrderResponse>>
+public class CreateOrderCommandHandler: IRequestHandler<CreateOrderCommand, Result<OrderResponse>>
 {
     private readonly IAppDbContext _context;
 
@@ -17,9 +16,7 @@ public class CreateOrderCommandHandler
         _context = context;
     }
 
-    public async Task<Result<OrderResponse>> Handle(
-        CreateOrderCommand request,
-        CancellationToken cancellationToken)
+    public async Task<Result<OrderResponse>> Handle(CreateOrderCommand request,CancellationToken cancellationToken)
     {
         var exists = await _context.Orders.AnyAsync(x => x.ExternalOrderId == request.ExternalOrderId, cancellationToken);
 
