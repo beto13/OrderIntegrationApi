@@ -1,0 +1,64 @@
+@baseUrl = http://localhost:5095
+
+### Create order - OK
+POST {{baseUrl}}/api/v1/orders
+Content-Type: application/json
+
+{
+  "externalOrderId": "EXT-10001",
+  "customerName": "Juan Pérez",
+  "customerEmail": "juan@email.com",
+  "totalAmount": 15000,
+  "currency": "ARS",
+  "items": [
+    {
+      "productName": "Funda Magnética",
+      "quantity": 2,
+      "unitPrice": 5000
+    },
+    {
+      "productName": "Vidrio Templado",
+      "quantity": 1,
+      "unitPrice": 5000
+    }
+  ]
+}
+
+
+### Create order - validation error
+
+POST {{baseUrl}}/api/v1/orders
+Content-Type: application/json
+
+{
+  "externalOrderId": "",
+  "customerName": "",
+  "customerEmail": "correo-mal",
+  "totalAmount": -100,
+  "currency": "AR",
+  "items": []
+}
+
+
+### Create order - duplicated externalOrderId
+
+POST {{baseUrl}}/api/v1/orders
+Content-Type: application/json
+{
+  "externalOrderId": "EXT-10001",
+  "customerName": "Juan Pérez",
+  "customerEmail": "juan@email.com",
+  "totalAmount": 15000,
+  "currency": "ARS",
+  "items": [
+    {
+      "productName": "Funda Magnética",
+      "quantity": 2,
+      "unitPrice": 5000
+    }
+  ]
+}
+
+### GetById
+GET {{baseUrl}}/api/v1/orders/19569563-5E86-4B50-A0BD-0DB85881F5B4
+Content-Type: application/json
